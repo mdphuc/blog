@@ -12,7 +12,7 @@
     
   </head>
   <body>
-    <nav id="desktop-nav" class="logo">
+    <nav id="desktop-nav" class="logo" >
       <div>
         <ul>
           <li>
@@ -25,13 +25,40 @@
         
       </div>
     </nav>
-    <section id="profile" class="active-profile" >
+    <section id="profile" class="active-profile" style="padding-top: 100px;">
       <div class="section__text" style="margin-bottom: 27%;">
         <h1 class="title phuc">Hi, I'm Phuc.</h1>
         <br>
         <p class="section__text__p2" style="font-size: medium;">
           I'm a Cybersecurity Engineering student at University of Cincinnati.
         </p>
+        <div class="btn-container" style="padding-right: 20px; padding-top: 10px;">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/resume-example.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="window.open('mailto:mdphuc1110@gmail.com','_blank')">
+            Email me
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="{{url_for('static',filename='images/linkedin.png')}}"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://linkedin.com/'"
+          />
+          <img
+            src="{{url_for('static',filename='images/github.png')}}"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/'"
+            style="padding-left: 10px;"
+          />
+        </div>
+      </div>
         <!-- <div class="btn-container">
           <button
             class="btn btn-color-2"
@@ -45,7 +72,7 @@
         </div>
        -->
       
-        <div class="item-container">
+        <!-- <div class="item-container">
           <div class="item shadow" style="left: 37%;">
             <img
               src="{{ url_for('static', filename = 'images/UC_CEAS.jpeg')}}"
@@ -62,11 +89,11 @@
           
           
         </div>
-      </div>
+      </div> -->
       
     </section>
-    <section id="about" class="active" >
-      <p class="section__text__p1" style="padding-top: 15px;">Get To Know More</p>
+    <section id="about" class="active" style="position: relative; z-index: 0;">
+      <p class="section__text__p1" style="padding-top: 30px;">Get To Know More</p>
       <h1 class="title phuc" style="padding-top: 15px;">About Me</h1>
       <div class="section-container" >
         <div class="section__pic-container">
@@ -89,10 +116,10 @@
         </div>
       </div>
     </section>
-    <section id="blog" class="active" style="padding-top: 80px;">
+    <section id="blog" class="active" style="padding-top: 90px;" >
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title phuc">Projects</h1>
-      <div class="item-container">
+      <!-- <div class="item-container">
         <div class="item shadow" style="left: 38%;">
           <img
             src="{{ url_for('static', filename='images/UC_CEAS.jpeg')}}"
@@ -108,7 +135,7 @@
         </div>
         
         
-      </div>
+      </div> -->
         
     </section>
     <!-- <div id="socials-container">
@@ -125,50 +152,7 @@
         onclick="window.open('https://github.com/mdphuc','_blank')"
       />
     </div> -->
-    
-    <ul style="position: relative; z-index: 1;">
-      <li>
-        <a class=" hover-underline-animation" style="float: right; margin-right: 3%;">
-          <img
-            src="{{ url_for('static', filename='images/linkedin.png')}}"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="window.open('https://www.linkedin.com/in/phuc-mai-92a895272/','_blank')"
-          />
-        </a>
-        <a class=" hover-underline-animation" style="float: right; margin-right: 1%; font-size: 1rem;">
-          <img
-          src="{{ url_for('static', filename='images/github.png')}}"
-          alt="My Github profile"
-          class="icon"
-          onclick="window.open('https://github.com/mdphuc','_blank')"
-          />
-        </a>
-        
-      </li>
-      <li></li>
-      <li>
-        <a class="hover-underline-animation1" style="float: right; margin-right: 2.5%; font-size: 1rem">
-          <img
-          style="width: 41px; height: auto; "
-          src="{{ url_for('static', filename='images/checkmark.png')}}"
-          alt="My Email"
-          class="icon"
-          onclick="window.open('mailto:mdphuc1110@gmail.com','_blank')"
-          />
-        </a>
-        <a class="hover-underline-animation1" style="float: right; margin-right: 0.5%; font-size: 1rem">
-          <img
-          style="width: 40px; height: auto; "
-          src="{{ url_for('static', filename='images/email.png')}}"
-          alt="My Email"
-          class="icon"
-          onclick="window.open('mailto:mdphuc1110@gmail.com','_blank')"
-          />
-        </a>
-      </li>
-    </ul>
-    
+
     <script src="{{ url_for('static', filename='js/script.js')}}"></script>
     <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
