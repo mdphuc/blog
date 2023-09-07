@@ -16,7 +16,7 @@
       <div>
         <ul>
           <li>
-            <a class=" hover-underline-animation" id="profile_nav" style="margin-left: 40%;">Phuc Mai</a>
+            <a class=" hover-underline-animation" id="profile_nav" style="margin-left: 39.5%;">Phuc Mai</a>
             <a class=" hover-underline-animation" id="blog_nav" style="float: left; margin-left: 5%; font-size: 1rem;">Blog</a>
             <a class=" hover-underline-animation"   id="about_nav" style="float: right; margin-right: 5%; font-size: 1rem;">About</a>
           </li>
@@ -25,7 +25,7 @@
         
       </div>
     </nav>
-    <section id="profile" class="active-profile" style="padding-top: 100px;">
+    <section id="profile" class="active-profile" style="padding-top: 100px; ">
       <div class="section__text" style="margin-bottom: 27%;">
         <h1 class="title phuc">Hi, I'm Phuc.</h1>
         <br>
@@ -48,48 +48,30 @@
             src="{{url_for('static',filename='images/linkedin.png')}}"
             alt="My LinkedIn profile"
             class="icon"
-            onclick="location.href='https://linkedin.com/'"
+            onclick="window.open('https://www.linkedin.com/in/phuc-mai-92a895272/','blank')"
           />
           <img
             src="{{url_for('static',filename='images/github.png')}}"
             alt="My Github profile"
             class="icon"
-            onclick="location.href='https://github.com/'"
+            onclick="window.open('https://github.com/mdphuc/','blank')"
             style="padding-left: 10px;"
           />
         </div>
-      </div>
-        <!-- <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/resume-example.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
-        </div>
-       -->
-      
-        <!-- <div class="item-container">
-          <div class="item shadow" style="left: 37%;">
-            <img
-              src="{{ url_for('static', filename = 'images/UC_CEAS.jpeg')}}"
-              style="width: 80%; padding-top: 60px;"
-            >
+        <div class="item-container">
+          <div class="item shadow" style="left: 38%;">
+            <p style="margin-top: 45%; font-size: 1.6rem">Ezlab</p>
             <div class="overlay">
-              <a>
+              <a href="{{url_for('project', ProjectName = 'ezlab')}}">
               <div class="content">
-                <p style="font-size: 1.4rem; color: white;">Class of 2028</p>
+                <p style="font-size: 1.2rem; color: white;">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
               </div>
               </a>
             </div>
           </div>
           
-          
         </div>
-      </div> -->
+      </div>
       
     </section>
     <section id="about" class="active" style="position: relative; z-index: 0;">
@@ -106,11 +88,11 @@
         <div class="about-details-container">
           <div class="text-container">
             <p>
-              <b>  Hi!</b> My name is Phuc; I come from Hanoi, Vietnam. I'm University of Cincinnati 28' Cybersecurity Engineering student. I can speak Vietnamese (of course as it's my mother tongue) and English. 
+              <b>  Hi!</b> My name is Phuc; I come from Hanoi, Vietnam. I'm University of Cincinnati 28' Cybersecurity Engineering student. 
             </p>
             <br>
             <p>
-              I like reading books and taking pictures of the outside world. My focus point in photography is to find the beauty under the true self of everything. Beside being a photographer, I'm definitely a techie. I love playing CTF, and I'm really interested in the infrastructure side of Cybersecurity. My goal is to become a Cybersecurity Architect or Cybersecurity Infrastructure Engineer in the future. By being an UHP student, I really want to use this great opportunity to explore more my field of interest, meet more people specialized in the field, and gain more experience for my future career.
+              I like reading books and taking pictures of the outside world. My focus point in photography is to find the beauty under the true self of everything. Beside being a photographer, I'm definitely a techie. I love playing CTF, and I'm really interested in the infrastructure side of Cybersecurity. My goal is to become a Cybersecurity Architect or Cybersecurity Infrastructure Engineer in the future. 
             </p>
           </div>
         </div>
@@ -118,24 +100,8 @@
     </section>
     <section id="blog" class="active" style="padding-top: 90px;" >
       <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title phuc">Projects</h1>
-      <!-- <div class="item-container">
-        <div class="item shadow" style="left: 38%;">
-          <img
-            src="{{ url_for('static', filename='images/UC_CEAS.jpeg')}}"
-            style="width: 80%; padding-top: 60px;"
-          >
-          <div class="overlay">
-            <a>
-            <div class="content">
-              <p style="font-size: 1.4rem; color: white;">Class of 2028</p>
-            </div>
-            </a>
-          </div>
-        </div>
-        
-        
-      </div> -->
+      <h1 class="title phuc">Blog</h1>
+
         
     </section>
     <!-- <div id="socials-container">
