@@ -401,6 +401,14 @@ section {
   top: 57%;
 }
 
+.item-container1 {
+  width: 56%;
+  position: absolute;
+  text-align: center;
+  left: 19.5%;
+  top: 40%;
+}
+
 .overlay {
   position: absolute;
   left: 0;
@@ -413,12 +421,33 @@ section {
   cursor: pointer;
 }
 
+.overlay1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  background: rgba(255, 255, 255);
+  cursor: pointer;
+}
+
 .content {
   position: absolute;
   top: 30%;
 }
 
+.content1 {
+  position: absolute;
+  top: 8%;
+}
+
 .item:hover .overlay {
+  opacity: 1;
+}
+
+.item:hover .overlay1 {
   opacity: 1;
 }
 

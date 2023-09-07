@@ -16,6 +16,10 @@
   opacity: 1;
 }
 
+.active-blog {
+  opacity: 1;
+}
+
 .active-profile.is-active{
   animation: appear 0.7s;
 }
@@ -26,6 +30,10 @@
 
 .active-project.is-active{
   animation: appear 0.7s;
+}
+
+.active-blog.is-active{
+  animation: appear 0.7s
 }
 
 @keyframes appear {
