@@ -60,8 +60,13 @@
         </div>
         <div class="item-container">
           <div class="item shadow" style="left: 38%;">
-            <p style="margin-top: 45%; font-size: 1.6rem">Ezlab</p>
             <div class="overlay">
+              <img
+                src="{{url_for('static',filename='images/EzLab.png')}}"
+                alt="EzLab"
+                class="icon"
+                style="padding-left: 10px;"
+              />
               <a href="{{url_for('project', ProjectName = 'ezlab')}}">
               <div class="content">
                 <p style="font-size: 1.2rem; color: white;">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
