@@ -560,3 +560,52 @@ footer {
 footer p {
   text-align: center;
 }
+
+.sidenav {
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(23, 22, 22);
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.layer1 {
+  font-size: 1rem;
+  margin-left: 1%;
+  color: rgb(180, 178, 178);
+}
+
+.layer2 {
+  font-size: 1rem;
+  margin-left: 10%;
+  color: rgb(180, 178, 178);
+}
+
+.layer3 {
+  font-size: 1rem;
+  margin-left: 20%;
+  color: rgb(180, 178, 178);
+}
+
+.sidenav li:hover {
+  color: white;
+}
+
+._table {
+  font-size: 1rem;
+  margin-left: 27%;
+  padding-top: 10%;
+  color: rgb(205, 204, 204);
+}
+
+._table:hover {
+  color: white;
+}
+
+
+
+
