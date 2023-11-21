@@ -9,9 +9,9 @@ def main():
 def project(ProjectName):
     return render_template(f"{ProjectName}.html")
 
-# @app.route("/project/<BlogName>", methods=['GET'])
-# def blog(BlogName):
-#     return render_template(f"{BlogName}.html")
+@app.route("/blog/<BlogName>", methods=['GET'])
+def blog(BlogName):
+    return render_template(f"{BlogName}.html")
 
 @app.route('/resume')
 def resume():
