@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/1027411889.js" crossorigin="anonymous"></script>
+    <title>Phuc Mai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/Free_Sample_By_Wix.jpg') }}" >
+    
+  </head>
+  <body>
+    <nav id="desktop-nav" class="logo" >
+      <div>
+        <ul>
+          <li>
+            <a class=" hover-underline-animation" id="profile_nav" style="margin-left: 47%;" href="{{url_for('main')}}">Phuc Mai</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </nav>
+    <section id="ezlab" class="active-project" style="margin-top: -15%;">
+      <div class="section__text">
+        <h1 class="title phuc">University Honors Program</h1>
+        <div class="item-container">
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/about.png')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <div class="overlay">
+              <a href="{{url_for('uc', category='uhp')}}">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">About</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/year.png')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <div class="overlay">
+              <a href="{{url_for('uc', category='uhp')}}">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Year in Review</p>
+                </div>
+              </a>
+            </div>
+            
+          </div>
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/experience.png')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <div class="overlay">
+              <a href="{{url_for('uc', category='uhp')}}">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Honors Experience</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section__text" style="margin-top: -10%;">
+        <div class="item-container">
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/interest.png')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <div class="overlay">
+              <a href="{{url_for('uc', category='uhp')}}">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Involvement</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/showcase.png')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <div class="overlay">
+              <a href="{{url_for('uc', category='uhp')}}">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Gateway/Showcase</p>
+                </div>
+              </a>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    <script>
+      document.getElementById("ezlab").classList.toggle("is-active")
+    </script>
+    <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+      $("profile-nav").on('click', function(e){
+        $("about").show()
+
+      })
+    </script>
+  </body>
+</html>

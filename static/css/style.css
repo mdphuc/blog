@@ -73,7 +73,6 @@ a {
   display: inline-block;
   position: relative;
   padding-bottom: 5px;
-  
 }
 
 .hover-underline-animation::after {
@@ -230,14 +229,15 @@ section {
 
 .section__pic-container {
   display: flex;
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   margin: auto 0;
 }
 
 .section__text {
   align-self: center;
   text-align: center;
+  margin-top: 25%;
 }
 
 .section__text p {
@@ -260,10 +260,10 @@ section {
 }
 
 #socials-container {
-  position: absolute;
   gap: 1rem;
-  margin-top: 1%;
-  padding-left: 13.5%;
+  margin-top: 2%;
+  text-align: center;
+
 }
 
 /* ICONS */
@@ -343,8 +343,28 @@ section {
   display: flex;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: transparent;
+  min-width: 160px;
+  padding-top: 15px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .about-pic {
-  border-radius: 2rem;
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
 }
 
 .arrow {
@@ -394,19 +414,16 @@ section {
 }
 
 .item-container {
-  width: 56%;
-  position: absolute;
-  text-align: center;
-  left: 19%;
-  top: 57%;
+  display: flex;
+  margin-top: 20%;
+  justify-content: center;
 }
 
 .item-container1 {
-  width: 56%;
-  position: absolute;
-  text-align: center;
-  left: 19.5%;
-  top: 40%;
+  display: flex;
+  margin-top: 20%;
+  justify-content: center;
+
 }
 
 .overlay {
@@ -419,6 +436,10 @@ section {
   transition: opacity 0.4s ease-in-out;
   background: rgba(0, 128, 240, 0.9);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
 }
 
 .overlay1 {
@@ -434,29 +455,51 @@ section {
 }
 
 .content {
-  position: absolute;
-  top: 30%;
+  text-align: center;
 }
 
 .content1 {
-  position: absolute;
-  top: 8%;
+  text-align: center;
 }
 
-.item:hover .overlay {
+#card1:hover .overlay {
   opacity: 1;
 }
 
-.item:hover .overlay1 {
+#card1:hover .overlay1 {
+  opacity: 1;
+}
+
+#card2:hover .overlay {
+  opacity: 1;
+}
+
+#card2:hover .overlay1 {
   opacity: 1;
 }
 
 .item {
-  width: 33%;
-  height: 300px;
-  position: absolute;
+  width: 240px;
+  height: 280px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
+.blank{
+  width: 240px;
+  height: 280px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+  cursor: pointer;
+  position: relative;
+}
 
 
 .shadow {

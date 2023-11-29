@@ -18,21 +18,27 @@
           <li>
             <a class=" hover-underline-animation" id="profile_nav" style="margin-left: 39.5%;">Phuc Mai</a>
             <a class=" hover-underline-animation" id="blog_nav" style="float: left; margin-left: 5%; font-size: 1rem;">Blog</a>
-            <a class=" hover-underline-animation"   id="about_nav" style="float: right; margin-right: 5%; font-size: 1rem;">About</a>
+            <div class=" hover-underline-animation dropdown" style="float: right; margin-right: 5%; font-size: 1rem;">
+              <span id="about_nav" >About</span>
+              <div class="dropdown-content">
+                <a class="hover-underline-animation" href="{{url_for('uc', category='main')}}">School</a>
+              </div>
+            </div>
+            
           </li>
           
         </ul>
         
       </div>
     </nav>
-    <section id="profile" class="active-profile" style="padding-top: 100px; ">
-      <div class="section__text" style="margin-bottom: 27%;">
+    <section id="profile" class="active-profile" style="margin-top: -5%;">
+      <div class="section__text">
         <h1 class="title phuc">Hi, I'm Phuc.</h1>
         <br>
         <p class="section__text__p2" style="font-size: medium;">
           I'm a Cybersecurity Engineering student at University of Cincinnati.
         </p>
-        <div class="btn-container" style="padding-right: 20px; padding-top: 10px;">
+        <div class="btn-container">
           <button
             class="btn btn-color-2"
             id="resume"
@@ -64,23 +70,44 @@
           />
         </div>
         <div class="item-container">
-          <div class="item shadow" style="left: 38%;">
+          <div class="item shadow" id="card1">
             <img
                 src="{{url_for('static',filename='images/EzLab.png')}}"
                 alt="EzLab"
                 class="icon"
-                style="padding-left: 1%; width: 90%; height: auto; padding-top: 7%;"
+                style="width: 100%; height: auto; margin-top: 15%;"
               />
-            <div class="overlay">
-              <a href="{{url_for('project', ProjectName = 'ezlab')}}">
-              <div class="content">
-                <p style="font-size: 1.2rem; color: white;">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
+            <a href="{{url_for('project', ProjectName = 'beaver')}}">
+
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">The project is designed to help develop and test program easier</p>
+                </div>
+
               </div>
-              </a>
-            </div>
+            </a>
           </div>
+          <div class="item shadow" id="card1">
+            <img
+                src="{{url_for('static',filename='images/beaver.jpg')}}"
+                alt="EzLab"
+                class="icon"
+                style="width: 100%; height: auto; margin-top: 25%;"
+              />
+            <a href="{{url_for('project', ProjectName = 'beaver')}}">
+
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
+                </div>
+
+              </div>
+            </a>
+          </div>
+
           
         </div>
+
       </div>
       
     </section>
@@ -102,8 +129,9 @@
             </p>
             <br>
             <p>
-              I like reading books and taking pictures of the outside world. My focus point in photography is to find the beauty under the true self of everything. Beside being a photographer, I'm definitely a techie. I love playing CTF, and I'm really interested in the infrastructure side of Cybersecurity. My goal is to become a Cybersecurity Architect or Cybersecurity Infrastructure Engineer in the future. 
+              I like reading books and taking pictures of the outside world. My focus point in photography is to find the beauty under the true self of everything. I love playing CTF. My goal is to work in the Infrastructure and Network area of Cybersecurity. 
             </p>
+            <br>
           </div>
         </div>
       </div>
@@ -111,30 +139,6 @@
     <section id="blog" class="active" style="padding-top: 90px;" >
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title phuc">Blog</h1>
-      <div class="item-container1">
-        <div class="item shadow" style="left: 38%;">
-          <img
-              src="{{url_for('static',filename='images/VMIsEasy.png')}}"
-              alt="EzLab"
-              class="icon"
-              style="width: 95%; height: auto; padding-top: 7%;"
-            />
-            <p style="font-size: 1.2rem; padding-top: 8%; padding-left: 1%;">Setting up a virtual environment no longer a problem</p>
-          <div class="overlay1">
-            <a href="{{url_for('blog', BlogName = 'VMIsEasy')}}">
-            <div class="content1">
-              <img
-                src="{{url_for('static',filename='images/EzLab.png')}}"
-                alt="EzLab"
-                class="icon"
-                style="padding-left: 1%; width: 90%; height: auto; "
-              />
-            </div>
-            </a>
-          </div>
-        </div>
-        
-      </div>
         
     </section>
     <!-- <div id="socials-container">
@@ -152,8 +156,8 @@
       />
     </div> -->
 
-    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
-    <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/nav.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
       $("profile-nav").on('click', function(e){
