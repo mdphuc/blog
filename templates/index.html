@@ -70,14 +70,14 @@
           />
         </div>
         <div class="item-container">
-          <div class="item shadow" id="card1">
+          <div class="item1 shadow" id="card1">
             <img
                 src="{{url_for('static',filename='images/EzLab.png')}}"
                 alt="EzLab"
                 class="icon"
-                style="width: 100%; height: auto; margin-top: 15%;"
+                style="width: 100%; height: auto; margin-top: 13%;"
               />
-            <a href="{{url_for('project', ProjectName = 'beaver')}}">
+            <a href="{{url_for('project', ProjectName = 'ezlab')}}">
 
               <div class="overlay">
                 <div class="content">
@@ -87,7 +87,24 @@
               </div>
             </a>
           </div>
-          <div class="item shadow" id="card1">
+          <div class="item1 shadow" id="card1">
+            <img
+                src="{{url_for('static',filename='images/remotenv.png')}}"
+                alt="EzLab"
+                class="icon"
+                style="width: 60%; height: auto; margin-top: 35%;"
+              />
+            <a href="{{url_for('project', ProjectName = 'remotenv')}}">
+
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
+                </div>
+
+              </div>
+            </a>
+          </div>
+          <div class="item1 shadow" id="card1">
             <img
                 src="{{url_for('static',filename='images/beaver.jpg')}}"
                 alt="EzLab"
@@ -98,12 +115,13 @@
 
               <div class="overlay">
                 <div class="content">
-                  <p style="font-size: 1rem; color: white">The project is designed to help create virtual machine and hacking lab on Virtual Box faster on Windows</p>
+                  <p style="font-size: 1rem; color: white">The project, utilizing Golang, is an upgraded version of remotenv</p>
                 </div>
 
               </div>
             </a>
           </div>
+
 
           
         </div>

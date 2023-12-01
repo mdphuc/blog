@@ -491,6 +491,19 @@ section {
   margin-right: 3%;
 }
 
+.item1 {
+  width: 280px;
+  height: 290px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
 .blank{
   width: 240px;
   height: 280px;
