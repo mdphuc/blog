@@ -480,7 +480,7 @@ section {
 
 .item {
   width: 240px;
-  height: 280px;
+  aspect-ratio: 2 / 2.4;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 5%;
@@ -493,7 +493,7 @@ section {
 
 .item1 {
   width: 280px;
-  height: 290px;
+  aspect-ratio: 2 / 2.4;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 5%;
