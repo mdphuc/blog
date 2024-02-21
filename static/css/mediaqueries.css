@@ -45,6 +45,10 @@
   .about-containers {
     margin-top: 0;
   }
+
+  .logo {
+    display: block !important;
+  }
 }
 
 @media screen and (max-width: 600px) {

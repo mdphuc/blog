@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}" />
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/Free_Sample_By_Wix.jpg') }}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
     
   </head>
   <body>
@@ -18,29 +21,14 @@
     </div>
 
     <section id="ezlab" class="active-project">
-      <h1 class="title phuc" style="padding-top: 40px;">Beaver</h1>
-      <div class="section-container" >
-        <a href="https://github.com/mdphuc/ezlab.git" target="_blank">
-          <div class="section__pic-container" style="margin-bottom: 14%;">
-            <img
-              src="{{ url_for('static', filename='images/beaver.jpg')}}"
-              alt="Profile picture"
-              class="about-pic"
-            />
-          </div>
-        </a>
-        <div class="about-details-container" style="margin-bottom: 7%;">
-          <div class="text-container">
-            <p style="font-size: 1rem;">
-              The project, utilizing Golang, is an upgrade version of <a href="https://github.com/mdphuc/remotenv" target="_blank">remotenv</a> allows user accross larger platform (also supports linux user) to build a middle place to develop, run, and test their code in a Linux operating system of their own choice. 
-            </p>
-            <br>
-            <p><i>Nov 19 2023</i></p>
-            <br>
-            <a href="https://github.com/mdphuc/beaver.git" target="_blank">
-              <i class="fa-solid fa-link"></i>
-            </a>
-          </div>
+      <h1 class="title phuc" style="padding-top: 40px;">ENED 1100 Fall 2023 <br>thoughts and reflection</h1>
+      <div class="item-container1">
+        <div class="item_blog" id="card1">
+          <p style="float: right; font-style: italic; font-size: small;">Dec 26 2023</p>
+          <br><br>
+          <p style="font-family: 'Lora'; font-size: 1.25rem; color: black; line-height: 1.6;">
+            It’s like baking pizza. You don’t bake the pizza at home; you call a pizza place and tell them what you want. The pizza delivery is like a function that takes your order (dependencies) and delivers the result (pizza). 
+          </p>
         </div>
       </div>
     </section>

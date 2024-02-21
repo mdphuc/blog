@@ -12,25 +12,17 @@
     
   </head>
   <body>
-    <nav id="desktop-nav" class="logo" >
-      <div>
-        <ul>
-          <li>
-            <a class=" hover-underline-animation" id="profile_nav" style="margin-left: 39.5%;">Phuc Mai</a>
-            <a class=" hover-underline-animation" id="blog_nav" style="float: left; margin-left: 5%; font-size: 1rem;">Blog</a>
-            <div class=" hover-underline-animation dropdown" style="float: right; margin-right: 5%; font-size: 1rem;">
-              <span id="about_nav" >About</span>
-              <div class="dropdown-content">
-                <a class="hover-underline-animation" href="{{url_for('uc', category='main')}}">School</a>
-              </div>
-            </div>
-            
-          </li>
-          
-        </ul>
-        
+    <div style="text-align: center; margin-top: 15px;" class="logo">
+      <a class=" hover-underline-animation" id="profile_nav" style="font-size: 1.3rem;">Phuc Mai</a>
+      <a class=" hover-underline-animation" id="blog_nav" style="float: left; margin-left: 5%; font-size: 1rem;">Blog</a>
+      <div class=" hover-underline-animation dropdown" style="float: right; margin-right: 5%; font-size: 1rem;">
+        <span id="about_nav" >About</span>
+        <div class="dropdown-content">
+          <a class="hover-underline-animation" href="{{url_for('uc', category='main')}}" style="margin-right: 100%;">School</a>
+        </div>
       </div>
-    </nav>
+  
+    </div>
     <section id="profile" class="active-profile" style="margin-top: -5%;">
       <div class="section__text">
         <h1 class="title phuc">Hi, I'm Phuc.</h1>
@@ -173,7 +165,26 @@
       <p class="section__text__p1">Browse My Recent</p>
       <br>
       <h1 class="title phuc">Blog</h1>
-        
+      <!-- <div class="item-container">
+        <div class="item2 shadow" id="card1">
+          <img
+              src="{{url_for('static',filename='images/ENED.jpg')}}"
+              alt="EzLab"
+              class="icon"
+              style="width: 60%; height: auto; margin-top: 13%"
+            />
+          <p style="text-align: center;">But... Is it?</p>
+          <a href="{{url_for('blog', BlogName = 'ened1100experience')}}">
+
+            <div class="overlay">
+              <div class="content">
+                <p style="font-size: 1rem; color: white">ENED 1100 Fall 2023 thoughts and experience</p>
+              </div>
+
+            </div>
+          </a>
+        </div> -->
+      </div>
     </section>
     <!-- <div id="socials-container">
       <img

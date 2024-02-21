@@ -415,13 +415,15 @@ section {
 
 .item-container {
   display: flex;
-  margin-top: 20%;
+  margin-top: 15%;
   justify-content: center;
-}
+  
+} 
+
 
 .item-container1 {
   display: flex;
-  margin-top: 20%;
+  margin-top: 2%;
   justify-content: center;
 
 }
@@ -500,6 +502,31 @@ section {
   cursor: pointer;
   position: relative;
   background-color: white;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.item2 {
+  width: 240px;
+  aspect-ratio: 1 / 1.2;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.item_blog {
+  width: 60%;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid black;
   margin-left: 3%;
   margin-right: 3%;
 }
@@ -664,4 +691,71 @@ footer p {
 
 
 
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.split1 {
+  height: 100%;
+  width: 40%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 20px;
+  border-right: 2px solid black;
+}
+
+.split2 {
+  height: 100%;
+  width: 60%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  
+}
+
+.right {
+  right: 0;
+  
+}
+
+code {
+  background-color: black;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  max-width: 90%;
+  border-radius: 4px;
+  font-size: 110%;
+}
+
+.flash-container {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  min-height: 30px;
+
+}
+
+.copied {
+  display: none;
+  margin-left: 10px;
+  padding: 5px 12px;
+  background-color: #000000df;
+  border-radius: 4px;
+  color: #fff;
+}
 
