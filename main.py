@@ -9,12 +9,27 @@ def main():
 def project(ProjectName):
     return render_template(f"{ProjectName}.html")
 
-@app.route("/uc/<category>", methods=['GET'])
-def uc(category):
-    if category == "uhp":
-        return render_template("uhp.html")
+@app.route("/uhp", methods=['GET'])
+def uhp():
+    return render_template("uhp.html")
+
+@app.route("/showcase/<id>", methods=['GET'])
+def showcase(id):
+    if id == "0":
+        return render_template("showcase.html")
+    elif id == "1":
+        return render_template("showcase1.html")
     else:
-        return render_template("uc.html")
+        return render_template("showcase.html")
+
+@app.route("/yearinreview/<id>", methods=['GET'])
+def yearinreview(id):
+    if id == "0":
+        return render_template("yearinreview.html")
+    elif id == "2023-2024":
+        return render_template("2023-2024.html")
+    else:
+        return render_template("yearinreview.html")
 
 @app.route("/blog/<BlogName>", methods=['GET'])
 def blog(BlogName):

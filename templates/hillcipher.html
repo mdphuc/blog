@@ -17,45 +17,34 @@
       <a class=" hover-underline-animation" id="profile_nav" style="font-size: 1.3rem;" href="{{url_for('main')}}">Phuc Mai</a>
     </div>
 
-    <section id="ezlab" class="active-project" style="margin-top: -15%;">
-      <div class="section__text">
-        <h1 class="title phuc">University Honors Program</h1>
-        <div class="item-container">
-          <div class="item shadow" id="card2">
+    <section id="ezlab" class="active-project">
+      <h1 class="title phuc" style="padding-top: 40px;">HillCipher</h1>
+      <div class="section-container" >
+        <a href="https://github.com/mdphuc/ezlab.git" target="_blank">
+          <div class="section__pic-container" style="margin-bottom: 14%;">
             <img
-              src="{{ url_for('static', filename='images/year.png')}}"
+              src="{{ url_for('static', filename='images/HillCipher.png')}}"
               alt="Profile picture"
               class="about-pic"
-              style="width: 60%; height: auto; margin-top: 27%;"
             />
-            <a href="{{url_for('yearinreview', id='0')}}">
-              <div class="overlay">
-                <div class="content">
-                  <p style="font-size: 1rem; color: white">Year in Review</p>
-                </div>
-              </div>
-            </a>
-            
           </div>
-          <div class="item shadow" id="card2">
-            <img
-              src="{{ url_for('static', filename='images/showcase.png')}}"
-              alt="Profile picture"
-              class="about-pic"
-              style="width: 60%; height: auto; margin-top: 27%;"
-            />
-            <a href="{{url_for('showcase', id='0')}}">
-              <div class="overlay">
-                <div class="content">
-                  <p style="font-size: 1rem; color: white">Showcase</p>
-                </div>
-              </div>
+        </a>
+        <div class="about-details-container" style="margin-bottom: 7%;">
+          <div class="text-container">
+            <p style="font-size: 1rem;">
+              Small Python program to encrypt, decrypt and get key Hill Cipher
+            </p>
+            <br>
+            <p><i>May 10 2024</i></p>
+            <br>
+            <a href="https://github.com/mdphuc/hillcipher" target="_blank">
+              <i class="fa-solid fa-link"></i>
             </a>
-            
           </div>
-
         </div>
       </div>
+    </section>
+   
     <script src="{{ url_for('static', filename='js/script.js')}}"></script>
     <script>
       document.getElementById("ezlab").classList.toggle("is-active")

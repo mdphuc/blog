@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/1027411889.js" crossorigin="anonymous"></script>
+    <title>Phuc Mai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/Free_Sample_By_Wix.jpg') }}" >
+    
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 15px;">
+      <a class=" hover-underline-animation" id="profile_nav" style="font-size: 1.3rem;" href="{{url_for('main')}}">Phuc Mai</a>
+    </div>
+
+    <section id="ezlab" class="active-project">
+      <a href="{{url_for('yearinreview', id='2023-2024')}}" target="_blank">
+        <h1 class="title phuc" style="padding-top: 40px; font-size: 2.5rem;">Learning through Media: The Presence of Engineering Design Principles in Digital Games</h1>
+        <br>
+        <i class="fa-solid fa-link" style="margin-left: 50%;"></i>
+      </a>
+
+      <div class="section-container" style="width: 65%; margin: auto; margin-top: 60%;">
+        <div class="about-details-container">
+          <div class="text-container">
+            <p style="font-size: 1rem; line-height: 30px">
+              &emsp;&emsp;During Spring 2024 semester, I did an Honor Research Experience advised by Dr. Evenhouse with 4 of my friends on the presence of engineering design principles in digital games. Our study focused on 2 main game categories: sandbox and open world RPG game, in which Minecraft and Zelda: Tears of the Kingdom (Totk) were investigated and compared respectively. We investigated that presence by considering 25 videos covering creative and story mode of both Totk and Minecraft. We began our research by first redefining engineering design process learned in ENED 1100 as video-approachable categories to ease the process of video examining. We then came up with a scoring system for each category; a so-called survey would then be conducted by each person for each video; Cohen Kappa would then be used to get the consensus of all surveys; finally, statistics would then come into play to get the trend of data, thus get us the results for our claim.
+            </p>
+            <p style="font-size: 1rem; line-height: 30px">
+              &emsp;&emsp;For me personally, I always want to do research. One of my goals is to get a PhD sometimes in the future. Although this is not actual academic research, I really enjoyed doing it, and as a person who oversaw all processes from brainstorming to conducting research, to presenting and writing the paper, I was enlightened. This has showed me at part that I could do research and I could continue with it in the future
+            </p>
+            <br><br>
+            <embed src="{{url_for('static', filename='file/GAMERESEARCH.pdf')}}" width="100%" height="500px" />
+            <br><br><br>
+            <embed src="{{url_for('static', filename='file/GAMERESEARCHPAPER.pdf')}}" width="100%" height="1000px" />
+            <br><br>
+            <br><br>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    <script>
+      document.getElementById("ezlab").classList.toggle("is-active")
+    </script>
+    <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+      $("profile-nav").on('click', function(e){
+        $("about").show()
+
+      })
+    </script>
+  </body>
+</html>

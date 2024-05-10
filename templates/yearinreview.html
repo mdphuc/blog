@@ -22,38 +22,15 @@
         <h1 class="title phuc">University Honors Program</h1>
         <div class="item-container">
           <div class="item shadow" id="card2">
-            <img
-              src="{{ url_for('static', filename='images/year.png')}}"
-              alt="Profile picture"
-              class="about-pic"
-              style="width: 60%; height: auto; margin-top: 27%;"
-            />
-            <a href="{{url_for('yearinreview', id='0')}}">
+            <p style="font-size: 1rem; color: black; margin-top: 50%;">2023-2024</p>
+            <a href="{{url_for('yearinreview', id='2023-2024')}}">
               <div class="overlay">
                 <div class="content">
-                  <p style="font-size: 1rem; color: white">Year in Review</p>
+                  <p style="font-size: 1rem; color: white">2023-2024</p>
                 </div>
-              </div>
+              </div> 
             </a>
-            
           </div>
-          <div class="item shadow" id="card2">
-            <img
-              src="{{ url_for('static', filename='images/showcase.png')}}"
-              alt="Profile picture"
-              class="about-pic"
-              style="width: 60%; height: auto; margin-top: 27%;"
-            />
-            <a href="{{url_for('showcase', id='0')}}">
-              <div class="overlay">
-                <div class="content">
-                  <p style="font-size: 1rem; color: white">Showcase</p>
-                </div>
-              </div>
-            </a>
-            
-          </div>
-
         </div>
       </div>
     <script src="{{ url_for('static', filename='js/script.js')}}"></script>

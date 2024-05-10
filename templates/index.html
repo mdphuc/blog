@@ -18,12 +18,12 @@
       <div class=" hover-underline-animation dropdown" style="float: right; margin-right: 5%; font-size: 1rem;">
         <span id="about_nav" >About</span>
         <div class="dropdown-content">
-          <a class="hover-underline-animation" href="{{url_for('uc', category='main')}}" style="margin-right: 100%;">School</a>
+          <a class="hover-underline-animation" href="{{url_for('uhp')}}" style="margin-right: 100%;">School</a>
         </div>
       </div>
   
     </div>
-    <section id="profile" class="active-profile" style="margin-top: -5%;">
+    <section id="profile" class="active-profile" style="margin-top: 2%;">
       <div class="section__text">
         <h1 class="title phuc">Hi, I'm Phuc.</h1>
         <br>
@@ -81,9 +81,16 @@
           onclick="window.open('https://github.com/mdphuc/myfile','blank')"
           style="padding-left: 10px"
           />
+          <img
+          src="{{url_for('static',filename='images/LeetCode.png')}}"
+          alt="file"
+          class="icon"
+          onclick="window.open('https://leetcode.com/u/mdphuc1110/','blank')"
+          style="padding-left: 10px"
+          />
 
         </div>
-        <div class="item-container">
+        <div class="item-container" style="margin-top: 10%;">
           <div class="item1 shadow" id="card1">
             <img
                 src="{{url_for('static',filename='images/EzLab.png')}}"
@@ -97,7 +104,6 @@
                 <div class="content">
                   <p style="font-size: 1rem; color: white">The project is designed to help develop and test program easier</p>
                 </div>
-
               </div>
             </a>
           </div>
@@ -135,11 +141,51 @@
               </div>
             </a>
           </div>
-
-
-          
         </div>
+        <div class="item-container" style="margin-top: 6%;">
+          <div class="item1 shadow" id="card1">
+            <img
+              src="{{url_for('static',filename='images/HillCipher.png')}}"
+              alt="EzLab"
+              class="icon"
+              style="width: 100%; height: auto; margin-top: 13%;"
+            />
 
+            <a href="{{url_for('project', ProjectName = 'hillcipher')}}">
+
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Small Python program to encrypt, decrypt and get key Hill Cipher</p>
+                </div>
+
+              </div>
+            </a>
+          </div>
+          <div class="item1 shadow" id="card1">
+            <img
+              src="{{url_for('static',filename='images/gameresearch.png')}}"
+              alt="EzLab"
+              class="icon"
+              style="width: 100%; height: auto; margin-top: 13%;"
+            />
+
+            <a href="{{url_for('showcase', id='1')}}">
+
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">Learning through Media: The Presence of Engineering Design Principles in Digital Games</p>
+                </div>
+
+              </div>
+            </a>
+          </div>
+
+          <div class="item1 shadow" id="card1">
+
+          </div>
+
+        </div>
+        <br><br>
       </div>
       
     </section>
