@@ -33,7 +33,7 @@ def yearinreview(id):
 
 @app.route("/blog/<BlogName>", methods=['GET'])
 def blog(BlogName):
-    return render_template(f"{BlogName}.html")
+    return render_template(f"{BlogName}")
 
 @app.route('/resume')
 def resume():
