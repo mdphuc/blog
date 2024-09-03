@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Phuc Mai (mdphuc)" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Notepad tapper - mdphuc</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Notepad tapper";
+        var mkdocs_page_input_path = "2024_9_1_notepad_tapper.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> mdphuc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../2024_7_27_procinj/">I created a Windows 10 Vuln machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >x86 and x86_64 Function Hooking</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../2024_7_28_hook_api/">Introduction</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../2024_8_12_recon_upx_analysis/">Recon_upx The analysis of UPX-packed file</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">mdphuc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Notepad tapper</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notepad-tapper">Notepad tapper</h1>
+<p><em>Sep 1 2024</em></p>
+<p><strong>Disclaimer: The techniques discussed here work on Windows 10 notepad, but not Windows 11 notepad</strong></p>
+<h2 id="introduction">Introduction</h2>
+<p>In this blog, I'll discuss how you can change data displayed on notepad process using code, and then showcase a simple space shooter game for notepad. We'll use windows api and Cheat Engine to achieve this. For more information of Cheat Engine, please visit: <a href="https://wiki.cheatengine.org/index.php?title=Tutorials:Cheat_Engine_Tutorial_Guide_x64">https://wiki.cheatengine.org/index.php?title=Tutorials:Cheat_Engine_Tutorial_Guide_x64</a>. This blog is inspired by <a href="https://kylehalladay.com/">Kyle Halladay</a>'s post: <a href="https://kylehalladay.com/blog/2020/05/20/Hooking-Input-Snake-In-Notepad.html">Hooking Keyboard Input To Play Snake In Notepad.exe</a></p>
+<h2 id="initial-observe">Initial Observe</h2>
+<p>With Cheat Engine, we can find the address of specific word within notepad process (what we're trying to do). As of notepad, though it specifically say UTF_8 at the bottom right corner, data is actually encoded by UTF_16.</p>
+<p><img src="../Images/notepad_tapper_1.png"></p>
+<p>How we know it? Let's examine using Cheat Engine. Let's try to find address of hello in the memory</p>
+<p><img src="../Images/notepad_tapper_2.png"></p>
+<p>Fire up Cheat Engine and search for <code>hello</code> in UTF_8 we have nothing in return</p>
+<p><img src="../Images/notepad_tapper_3.png"></p>
+<p>However, if we change the search to UTF_16, an address pops up</p>
+<p><img src="../Images/notepad_tapper_4.png"></p>
+<p>Change value of this memory address will result in change in notepad process. With this in mind, we'll use code to automate our process. First, we'll try to find the memmory address associated with a value matched target pattern. Then. we'll try to change the value, and update the windows.</p>
+<h2 id="find-pattern">Find pattern</h2>
+<p>VirtualQueryEx will help us run through all memmory address of target process (region size, data, premission, ...). We then check if the region has COMMIT and READWRITE permission. Once we capture all of those region, we'll initiate our find pattern function to find our target address. </p>
+<pre><code class="language-cpp">char* GetProcessMemory(DWORD proc_id, char *pattern, size_t patternLen){
+  HANDLE hproc = OpenProcess(PROCESS_ALL_ACCESS, false, proc_id);
+  LPVOID base = 0x0;
+  MEMORY_BASIC_INFORMATION memInfo;
+  size_t bytesread;
+
+  int skip = 0;
+
+  while (VirtualQueryEx(hproc, base, &amp;memInfo, sizeof(memInfo))){
+    if (skip &gt; 4){
+      if (memInfo.State == MEM_COMMIT &amp;&amp; memInfo.Protect == PAGE_READWRITE){
+        char *lpBuffer = (char *)malloc(memInfo.RegionSize);
+
+        ReadProcessMemory(hproc, base, lpBuffer, memInfo.RegionSize, NULL);
+        char* match = FindPattern(lpBuffer, memInfo.RegionSize, pattern, patternLen);
+
+        if (match){
+            uint64_t diff = (uint64_t)match - (uint64_t)(lpBuffer);
+            char* processPtr = (char *)base + diff;
+            return processPtr;
+        }
+      }
+    }
+    // cout &lt;&lt; endl &lt;&lt; endl;
+
+    skip ++;
+    base += memInfo.RegionSize;
+  }
+
+  return nullptr;
+}
+</code></pre>
+<p>To find pattern, first we'll initiate a pointer, <code>ptr</code>, points to the base address of target region. Then we'll move up until <code>ptr</code> is region size away from the base address. This can be done using this code:</p>
+<pre><code class="language-cpp">char* FindPattern(char* src, size_t srcLen, const char* pattern, size_t patternLen){
+    char* cur = src;
+    size_t curPos = 0;
+
+    while (curPos &lt; srcLen){
+        if (memcmp(cur, pattern, patternLen) == 0){
+            return cur;
+        }
+
+        curPos++;
+        cur = &amp;src[curPos];
+    }
+    return nullptr;
+}
+</code></pre>
+<p>Next up, it's time to change the value and we all done.</p>
+<h2 id="change-value">Change value</h2>
+<p>There's a problem with changing value in memory address:
+1) Value is changed but notepad's display may not be updated immediately. Manual interact with notepad process is required.
+2) Region size is fixed. Updated value is constrained within that box.</p>
+<p>Tackling (1) is not that hard. Windows offers InvalidateRect functionality, which can force a process's window to update.</p>
+<pre><code class="language-cpp">bool UpdateProcessMemory(DWORD proc_id, LPVOID base, size_t size){
+    HANDLE hproc = OpenProcess(PROCESS_ALL_ACCESS, false, proc_id);
+    MEMORY_BASIC_INFORMATION memInfo;
+
+    // char *payload = UTF16Convert((char *)target.c_str());
+
+    if(!WriteProcessMemory(hproc, base, buffer, size, NULL)){
+        return false;
+    }
+
+    RECT r;
+    GetClientRect(notepad_hwnd, &amp;r);
+    InvalidateRect(notepad_hwnd, &amp;r, false);
+    return true;
+}
+</code></pre>
+<p>Let's get into space shooter for notepad</p>
+<h2 id="space-shooter">Space shooter</h2>
+<p>Each line in notepad associates with one memory address. To make a game, we'll need to have the control of entire screen or notepad windows. To achieve this, the simplest way is to enable word wrap in notepad; we just have to deal with 1 giant word (1 memory address). </p>
+<p>However, recording keyboard input is not that easy. There's one way we can global hook keyboard; however, this will make anytime we press a key, an action will be initiated to space shooter game, no matter if we have notepad process as active window or not. To achieve this, we can install hook inside notepad process, then use socket api to transfer key stroke out to the main program to update space shooter.</p>
+<p>Our plan here in general is to build a dll that acts both like a keystroke capture and a socket client. We'll then hook that dll into notepad process. 
+<code>SetWindowsHookExA</code> really actually helps hook keyboard with a dll. Payload dll should be loaded first by <code>LoadLibraryA</code>. Once it's loaded, export function will be accessible to main program, whose address got by <code>GetProcessAddress</code> can be used in <code>SetWindowsHookExA</code>.</p>
+<pre><code class="language-cpp">void InstallHook(DWORD thread_id){
+  TCHAR dll_path[MAX_PATH];
+
+  GetFullPathName(TEXT(&quot;./keyboard_dll.dll&quot;), MAX_PATH, dll_path, NULL);
+
+  cout &lt;&lt; dll_path &lt;&lt; endl;
+
+  HMODULE hooklib = LoadLibraryA((LPCSTR)dll_path);
+  HOOKPROC hookfunc = (HOOKPROC)GetProcAddress(hooklib, &quot;HookProcedure&quot;);
+
+  HHOOK keyboardhook = SetWindowsHookExA(WH_KEYBOARD, hookfunc, hooklib, thread_id);
+
+  cout &lt;&lt; &quot;Run&quot; &lt;&lt; endl;
+  while(GetMessage(NULL, NULL, WM_KEYFIRST, WM_KEYLAST)){}
+
+  UnhookWindowsHookEx(keyboardhook);
+}
+</code></pre>
+<p>I'll not discuss how to set up socket server and client using windows api here, but this documentation might help: <a href="https://learn.microsoft.com/en-us/windows/win32/winsock/complete-client-code">Socket Client</a> and <a href="https://learn.microsoft.com/en-us/windows/win32/winsock/complete-server-code?source=recommendations">Socket Server</a></p>
+<p>Putting it all together, <a href="https://github.com/mdphuc/myfile/blob/main/Notepad%20tapper/keyboardhook_dll.cpp">dll</a> and <a href="https://github.com/mdphuc/myfile/blob/main/Notepad%20tapper/server.cpp">server</a> code can be found in my Github repo</p>
+<p>I'll not discuss in detail the logic of game shooter here, but the code for it can be found in my <a href="https://github.com/mdphuc/myfile/tree/main/Notepad%20tapper/game_logic">Github</a> repo as well</p>
+<p>The full code can be found <a href="https://github.com/mdphuc/myfile/tree/main/Notepad%20tapper">here</a>.</p>
+<p>Here's some result:</p>
+<p><img src="../Images/notepad_tapper_6.gif"></p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
