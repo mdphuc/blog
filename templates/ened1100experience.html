@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/1027411889.js" crossorigin="anonymous"></script>
+    <title>Phuc Mai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/Free_Sample_By_Wix.jpg') }}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 15px;">
+      <a class=" hover-underline-animation" id="profile_nav" style="font-size: 1.3rem;" href="{{url_for('main')}}">Phuc Mai</a>
+    </div>
+
+    <section id="ezlab" class="active-project">
+      <h1 class="title phuc" style="padding-top: 40px;">ENED 1100 Fall 2023 <br>thoughts and reflection</h1>
+      <div class="item-container1">
+        <div class="item_blog" id="card1">
+          <p style="float: right; font-style: italic; font-size: small;">Dec 26 2023</p>
+          <br><br>
+          <p style="font-family: 'Lora'; font-size: 1.25rem; color: black; line-height: 1.6;">
+            It’s like baking pizza. You don’t bake the pizza at home; you call a pizza place and tell them what you want. The pizza delivery is like a function that takes your order (dependencies) and delivers the result (pizza). 
+          </p>
+        </div>
+      </div>
+    </section>
+   
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    <script>
+      document.getElementById("ezlab").classList.toggle("is-active")
+    </script>
+    <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+      $("profile-nav").on('click', function(e){
+        $("about").show()
+
+      })
+    </script>
+  </body>
+</html>

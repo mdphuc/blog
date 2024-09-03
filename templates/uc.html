@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/1027411889.js" crossorigin="anonymous"></script>
+    <title>Phuc Mai</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaqueries.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/toggle.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/Free_Sample_By_Wix.jpg') }}" >
+    
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 15px;">
+      <a class=" hover-underline-animation" id="profile_nav" style="font-size: 1.3rem;" href="{{url_for('main')}}">Phuc Mai</a>
+    </div>
+
+    <section id="ezlab" class="active-project" style="margin-top: -15%;">
+      <div class="section__text">
+        <h1 class="title phuc">University of Cincinnati</h1>
+        <div class="item-container">
+          <div class="item shadow" id="card1">
+            <img
+              src="{{ url_for('static', filename='images/cyberatuc.jpg')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 30%;"
+            />
+            <a href="https://www.cyberatuc.org/" target="_blank">
+              <div class="overlay">
+                <div class="content">
+                  <p style="font-size: 1rem; color: white">University of Cincinnati's student-run cybersecurity organization</p>
+                  <br>
+                  <p style="font-size: 1rem; color: white">Sep 2023 - now</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="item shadow" id="card2">
+            <img
+              src="{{ url_for('static', filename='images/UHP.jpg')}}"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 60%; height: auto; margin-top: 27%;"
+            />
+            <a href="{{url_for('uc', category = 'uhp')}}">
+              <div class="overlay">
+                  <div class="content">
+                    <p style="font-size: 1rem; color: white">Class of 2028</p>
+                  </div>
+                
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <script src="{{ url_for('static', filename='js/script.js')}}"></script>
+    <script>
+      document.getElementById("ezlab").classList.toggle("is-active")
+    </script>
+    <script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+      $("profile-nav").on('click', function(e){
+        $("about").show()
+
+      })
+    </script>
+  </body>
+</html>
