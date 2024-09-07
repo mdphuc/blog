@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Phuc Mai (mdphuc)" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Recon_upx The analysis of UPX-packed file - mdphuc</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Recon_upx The analysis of UPX-packed file";
+        var mkdocs_page_input_path = "2024_8_12_recon_upx_analysis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> mdphuc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="..">About</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../2024_7_27_procinj/">I created a Windows 10 Vuln machine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >x86 and x86_64 Function Hooking</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../2024_7_28_hook_api/">Introduction</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../2024_9_1_notepad_tapper/">Notepad tapper</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Malware Analysis</a>
+    <ul class="current">
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Recon_upx The analysis of UPX-packed file</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">mdphuc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Blog</li>
+          <li class="breadcrumb-item">Malware Analysis</li>
+      <li class="breadcrumb-item active">Recon_upx The analysis of UPX-packed file</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="recon_upx-the-analysis-of-upx-packed-file">Recon_upx: The analysis of UPX-packed file</h1>
+<p><em>Aug 12 2024</em></p>
+<p><strong>File: <a href="../File/recon_upx">recon_upx</a></strong></p>
+<p>In this blog post, I'll be discussing the use of IDA in performing static and dynamic analysis and unpacking a malware file. For more information related to IDA, visit <a href="https://hex-rays.com/ida-pro/" target="_blank">https://hex-rays.com/ida-pro/</a>. IDA example: <a href="https://www.hackers-arise.com/post/2017/06/22/Reverse-Engineering-Malware-Part-3-IDA-Pro-Introduction" target="_blank">https://www.hackers-arise.com/post/2017/06/22/Reverse-Engineering-Malware-Part-3-IDA-Pro-Introduction</a></p>
+<p>First thing first, we'll use file command to get the information about the architecture of the file <code>file ./recon_upx</code></p>
+<p><img src="../Images/recon_upx_file.png">
+<br></p>
+<p>It's pointed out that recon_upx is actually an ELF 64 bit file (built specifically to run on Linux/UNIX). The file is statically linked and no section header. Normally, for a basic ELF file, there are <code>.text</code>, <code>.bss</code>, and <code>.data</code> section headers. This is to say that this ELF file is probably packed. The malware will unpack itself during run time, and then continue executing malicious code.</p>
+<p><code>readelf -a ./recon_upx</code> also validates the packed state of recon_upx as explained above</p>
+<p><img src="../Images/recon_upx_readelf.png">
+<br></p>
+<p>Our task here is first to unpack the file, then to analyze the file. For unpacking, we'll use IDA. Let's first load the program in IDA:</p>
+<p><img src="../Images/recon_upx_ida1.png">
+<br></p>
+<p>According to readelf's output, once the program runs, EIP will first point to the entry point address <code>0x403858</code> (which is the address of <code>start</code>)</p>
+<p>Going through many instructions below, we can see <code>`sys_write</code> (write to file, screen, memory, ...), <code>sys_open</code> (open file or virtual memory), <code>sys_mmap</code> (allocate virtual memory space), <code>sys_mprotect</code> (works like VirtualProtect Windows api to change permission of that virtual memory space). It seems like the program is trying to decompress itself into its own virtual memory.</p>
+<p><img src="../Images/recon_upx_ida2.png"><br><br>
+<img src="../Images/recon_upx_ida3.png"></p>
+<p>Notice that program continues by doing <code>jmp r13</code>. We'll set a breakpoint here, <code>0x403AFC</code>, to observe corresponding actions.</p>
+<p><img src="../Images/recon_upx_ida4.png"></p>
+<p>Look at segments at this breakpoint, we can see recon_upx has <code>0x5000</code> in its virtual memory space from <code>0x7FFFF7FF4000</code> to <code>0x7FFFF7FF9000</code> containing DATA and CODE</p>
+<p><img src="../Images/recon_upx_ida5.png"></p>
+<p>Hex dump we have</p>
+<p><img src="../Images/recon_upx_ida6.png"></p>
+<p>We can presume that the program will then unpack code inside this section and write to its base segments. Continue execution we reach this point, <code>0x7FFFF7FF7C66</code>, followed by instruction at <code>0x408C01</code>, where there are<code>syscall exit</code> and <code>retn</code>.</p>
+<p><img src="../Images/recon_upx_ida10.png"><br><br></p>
+<p><img src="../Images/recon_upx_ida11.png"><br><br></p>
+<p>Debug until RIP reaches <code>jmp r12</code>, we have segments table like this</p>
+<p><img src="../Images/recon_upx_ida13.png"></p>
+<p>Segments of recon_upx have been changed, we can presume the unpacking process has finished</p>
+<p>Continue debuging we'll hit <code>__libc_start_main</code>, and if we'll let the program continue running, main malicious process will be deployed</p>
+<p><img src="../Images/recon_upx_ida14.png"></p>
+<p>At <code>start</code>, we saw recon_upx spans from <code>0x400000</code> to <code>0x609308</code></p>
+<p><img src="../Images/recon_upx_ida15.png"></p>
+<p>When we hit <code>jmp r12</code> as shown above, we can dump memory out using the following python code</p>
+<p><img src="../Images/recon_upx_ida16.png"></p>
+<p>Once file is dumped, we can then try to fix file header and segments. Then we'll have complete file, which can further be analyzed by IDA (pseudocode).</p>
+<p>This dump memory process can also be done using IDA pro and its plugin <a href="https://github.com/WPeace-HcH/ElfDumper" target="_blank">https://github.com/WPeace-HcH/ElfDumper</a>. This plugin allows more efficient dumping and no need to worry about fixing file headers and segments</p>
+<p>After this, we can load the dumped file in IDA again and use pseudocode to analyze the functionality of recon_upx</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2024_9_1_notepad_tapper/" class="btn btn-neutral float-left" title="Notepad tapper"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2024_9_1_notepad_tapper/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
